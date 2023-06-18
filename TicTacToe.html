@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tic Tac Toe</title>
+</head>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    nav{
+        background-color: black;
+        color: white;
+        height: 75px;
+        font-size: 27px;
+        display: flex;
+        align-items: center;
+        padding: 0 12px;
+
+    }
+    nav ul{
+        list-style-type: none;
+    }
+.gameContainer{
+background-color: blue;
+display: flex;
+justify-content: center;
+margin-top: 50px;
+}
+.container{
+       display: grid;
+       grid-template-columns: repeat(3,10vw);
+       grid-template-rows: repeat(3,10vw);
+}
+.box{
+    border: 2px solid black;
+    font-size: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.box:hover{
+    background-color: cornflowerblue;
+}
+.gameinfo{
+    padding: 0 35px;
+}
+.br-0{
+    border-right: 0;
+}
+.bl-0{
+    border-left: 0;
+}
+.bt-0{
+    border-top: 0;
+}
+.bb-0{
+    border-bottom: 0;
+}
+
+
+
+</style>
+<body>
+<nav>
+    <ul>
+        <li>MyTicTacToe.com</li>   
+    </ul>
+</nav>
+
+<div class="gameContainer">
+    <div class="container">
+        <div class="box bt-0 bl-0"><span class="boxtext"></span></div>
+        <div class="box bt-0 "><span class="boxtext"></span></div>
+        <div class="box bt-0 br-0"><span class="boxtext"></span></div>
+        <div class="box bl-0"><span class="boxtext"></span></div>
+        <div class="box"><span class="boxtext"></span></div>
+        <div class="box br-0"><span class="boxtext"></span></div>
+        <div class="box bl-0 bb-0"><span class="boxtext"></span></div>
+        <div class="box"><span class="boxtext"></span></div>
+        <div class="box bb-0 br-0"><span class="boxtext"></span></div>
+    </div>
+    <div class="gameInfo">
+        <h1>Hi this is tic tac toe game</h1>
+        <div>
+            <span class="info">turn for X</span>
+            <button id="reset">reset</button>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+console.log("Tic Tac Toe")
+let turn = "X"
+const changeTurn = ()=>{
+    return turn === "X"? "0":"X"
+}
+const checkWin = ()=>{
+    
+}
+  
+
+let boxes = document.getElementsByClassName("box");
+Array.from(boxes).forEach(element =>{
+    let boxtext = element.querySelector('.boxtext');
+    element.addEventListener('click', (e) =>{
+        if(boxtext.innerText === ''){
+            boxtext.innerText = turn;
+            turn = changeTurn();
+            checkWin();
+            document.getElementsByClassName("info")[0].innerText = "Turn for" + turn;
+        }
+
+    })
+})
+
+</script>
+</body>

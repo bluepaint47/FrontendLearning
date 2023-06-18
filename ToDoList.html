@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>To Do List</title>
+    </head>
+    <style>
+        :root{
+            --dark:#374151;
+            --darker:#1F2937;
+            --gray:#6B7280;
+            --light:#EEE;
+            --pink:#EC4899;
+            --purple:#8B5Cf6;
+
+        }
+        *{
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Fira sans',sans-serif;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            background: var(--dark);
+            min-height: 100vh;
+            color:white
+        }
+        header{
+            padding: 2rem 1rem;
+            max-width: 800px;
+            width:100%;
+            margin:0 auto;
+        }
+        header h1{
+            font-size: 2.5rem;
+            font-weight: 300;
+            color:var(--gray);
+            margin: 1rem;
+            margin-bottom: 1rem; 
+        }
+        #new-task-form{
+            display: flex;
+        }
+        input,button{
+            appearance: none;
+            background: none;
+            outline: none;
+            border: none;
+        }
+        #new-task-input{
+            flex: 1 1 0% ;
+            background-color:var(--darker) ;
+            padding:1rem ;
+            border-radius: 1rem;
+            margin-right: 1rem;
+            color:var(--light);
+            font-size: 1.2rem;
+        }
+        #new-task-input::placeholder{
+            color: var(--gray);
+        }
+        #new-task-submit{
+            color:var(--pink);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color:var(--pink);
+            cursor: pointer;
+        }
+        #new-task-input:hover{
+            opacity: 0.8;
+
+        }
+        #new-task-submit:active{
+            opacity: 0.6;
+        }
+        main{
+            flex: 1 1 0% ;
+            padding: 2rem 1rem;
+            max-width: 800px;
+            width:100%;
+            margin: 0 auto;
+        }
+        .task-list{
+            padding: 1rem;
+            
+        }
+        .task-list h2{
+            font-size: 1.5rem;
+            color:var(--gray);
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+        #tasks .task{
+            display: flex;
+            justify-content: space-between;
+            background-color: var(--darker);
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+        }
+        #tasks .task .content .text{
+            color: var(--light);
+            font-size: 1.125rem;
+            width:100%;
+            display: block;
+            transition: 0.4s;
+        }
+        #tasks .content.text:not(:read-only){
+            color: var(--pink);
+        }
+        #tasks.task.actions{
+            display: flex;
+            margin: 0 -0.5rem;
+        }
+        .task.actions button{
+            cursor: pointer;
+            margin: 0 0.5rem;
+            font-size: 1.125rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: 0.4s;
+    
+        }
+        .task.actions botton:hover{
+            opacity: 0.8;
+        }
+        .task.actions button:active{
+            opacity: 0.6;
+        }
+        .task.actions.edit{
+            color: var(--pink);
+        }
+        .task.actions.delete{
+            color: var(--purple);
+        }
+    </style>
+    <body>
+            <header>
+                <h1>Task List </h1>
+                <form id="new-task-form">
+                    <input
+                    type="text"
+                    id="new-task-input"
+                    placeholder="what do you have planned?">
+                    <input type="submit" id="new-task-submit" value="add task">
+                </form>
+            </header>
+            <main>
+                <section class="task-list">
+                    <h2>tasks</h2>
+
+                     <div id="tasks">
+
+                     <!--<div class="task">
+                        <div class="content">
+                           <input
+                           type="text"
+                           class="text"
+                           value="my shiny task"
+                           readonly >
+                           
+                       </div>  
+                       <div class="actions">
+                           <button class="edit">edit</button>
+                           <button class="delete">delete</button>
+
+                       </div>                    
+                    </div>-->
+
+                    
+                 </div>
+                </section>
+            </main>
+<script>
+    window.addEventListener('load',()=>{
+        const form =  document.queryselector("#new-task-form");
+        const input = document.querySelector("#new-task-input");
+        const list_el = document.querySelector("#tasks");
+
+        form.addEventListener('submit',(e) =>{
+            e.preventDeafult();
+
+            const task = input.value;
+            if (!task){
+                alert("please fill out the task")
+                return;
+            }
+            const task_el = document.createElement("div");
+            task_el.classList.add("task");
+
+            const task_content_el = document.createElement("div");
+            task_content_el.classList.add("content");
+            task_content_el.innerText = task;
+
+
+            task_el.appendChild(task_content_el);
+             
+            const task_input_el = document.createElement("input");
+            task_input_el.classList.add("text");
+            task_input_el.type = "text";
+            task_input_el.value = task;
+            task_input_el.setAttribute("readonly","readonly");
+
+            task_content_el.appendChild(task_content_el);
+            const task_actions_el = document.createElement("div");
+            task_actions_el.classList.add("actions");
+
+            const task_adit_el = document.createElement("button");
+            task_adit_el.classList.add("edit");
+
+
+            const task_delete_el = document.createElement("button");
+            task_delete_el.classList.add("delete");
+            task_delete_el.innerHTML = "delete";
+
+            task_actions_el.appendChild(task_edit_el);
+            task_actions_el.appendChild(task_delete_el);
+           
+
+
+
+
+
+
+            task_el.appendChild(task_el);
+            task_el.appendChild(task_actions_el);
+            input.value = "";
+        })
+
+    })
+</script>
+    </body>
+</html>

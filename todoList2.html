@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>To Do List</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <style>
+        body{
+            background-color: rgb(8, 51, 51);
+            
+        }
+        .cointainer{
+            width:360px;
+            padding: 33px;
+            text-align: center;
+            background-color: white;
+            margin-left: 33%;
+            margin-top: 5px;
+        }
+        input{
+            width:270px;
+            padding: 8px;
+            outline: none;
+            border: 2px solid rgb(6, 73, 73);
+        }
+        button{
+            width:60px;
+            height:41px;
+            background-color: black;
+            color: white;
+            border-radius: 2px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+        .text ul{
+            position: relative;
+            background-color: teal;
+            color: white;
+            text-align: left;
+            font-size: 19px;
+            padding: 7px;
+
+        }
+        .text ul i{
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+    <body>
+  
+        <div class="cointainer">
+            <h1>to do</h1>
+            <div class="inputs"> 
+                <input type="text" placeholder="Enter your Task" id="inp">
+                <button onclick="Add()">Add</button>
+
+            </div>
+            <div class="text">
+
+
+            </div>
+
+        </div>
+
+<script>
+    let inputs = document.getElementById("inp");
+    let text = document.querySelector(".text");
+
+    function Add(){
+        if (inputs.value == ""){
+            alert("please fill out the text")
+        }else{
+            let newEle = document.createElement("ul");
+            newEle.innerHTML= inputs.value +  '<i class="fa fa-trash"></i>' ;
+            text.appendChild(newEle);
+            inputs.value="";
+            newEle.querySelector("i").addEventListener("click", remove);
+            function remove(){
+                newEle.remove()
+            }
+
+
+
+
+
+        }
+
+    }
+    
+</script>
+
+
+    </body>
+    </html>
