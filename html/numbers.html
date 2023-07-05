@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <style>
+        body{
+            margin: 0%;
+            padding: 0%;
+            background-color: white;
+        }
+        button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #2980B9;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+    </style>
+<body>
+
+    <button id="myBtn">Press</button>
+    <span id="num" ></span>
+    
+
+    <script>
+        var num = localStorage.getItem("num");
+        document.getElementById("num").innerHTML= num;
+
+document.getElementById("myBtn").addEventListener("click", function() {
+    
+    
+ var num = localStorage.getItem("num");
+ var result = increament(num);
+  document.getElementById("num").innerHTML = result;
+  localStorage.setItem("num",result);
+
+
+
+    
+});
+
+function increament(n){
+    if(n == ""){
+        return 0;
+    }else{
+        return Number(n) + 1;
+    }
+}
+    
+
+// document.getElementById("demo").innerHTML = result;
+
+
+    </script>
+</body>
+   
+    </html>

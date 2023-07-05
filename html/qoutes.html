@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+</head>
+<style>
+    body{
+        margin: 0%;
+        padding: 0%;
+        background-color: rgb(233, 212, 216);
+        background-image: linear-gradient(to bottom right, rgb(238, 178, 188),rgb(172, 80, 80));
+        height: 310px;
+
+    }
+    button{
+        background-color: cadetblue;
+        color : white;
+        border: none;
+        cursor: pointer;
+        transition: width 2s , height 2s;
+        animation-name: example;
+        animation-duration: 5s;
+
+        
+       
+    }
+    @keyframes example{
+        0% { background-color: cadetblue;}
+        20% { background-color: red;}
+        90% { background-color:pink;}
+        50% { background-color:aqua ;}
+        80% { background-color: green;}
+        100% { background-color: black;}
+        100% { background-color: cornflowerblue;}
+        90% { background-color: rgb(151, 135, 69);}
+        100% { background-color: darkcyan;}
+        100% { background-color: darkgoldenrod;}
+
+        
+    }
+    button:hover{
+        width: 130px;
+        height: 70px;
+    }
+    .span{
+        padding: 12px 148px;
+        margin: 25px 0px;
+    }
+     #qoute{
+     
+    margin: 22px 131px;
+    color: brown;
+    text-align: center;
+    font-family: arial;
+    font-size: 26px;
+    }
+    .nan{
+        
+    padding: 15px 38px;
+    margin: 97px 614px;
+    position: absolute;
+    border-radius: 13px;
+    }
+    .qu p {
+    padding: 88px;
+    }
+</style>
+
+<body>
+    <div class="qu">
+        <p id ="qoute"></p>
+    </div>
+  
+    <button class="nan" id ="mybtn">Click</button>
+
+    <script type="text/javascript">
+
+       const api_url = "https://www.boredapi.com/api/Activity";
+       document.getElementById("mybtn").addEventListener("click" , function(){
+
+       async function getapi(url)
+       {
+           const response =  await fetch(url);
+           var data = await response.json();
+           console.log(data);
+           document.getElementById("qoute").innerHTML = data.activity;
+       }
+       getapi(api_url);
+
+  });
+
+
+        
+        </script>
+</body>
+</html>

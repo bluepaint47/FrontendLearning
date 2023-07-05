@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <style>
+        body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #F5F5F5;
+}
+
+.weather-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.weather-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+
+#temperature {
+  font-size: 50px;
+  margin: 0;
+}
+
+#condition {
+  font-size: 20px;
+  margin: 0;
+}
+
+#location {
+  font-size: 20px;
+  margin: 0;
+}
+
+input[type="text"] {
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #2980B9;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+    </style>
+    <body>
+        <div class="weather-container">
+            <div class="weather-box">
+                <h2 id="temperature"></h2>
+                <p id="condition"></p>
+                <p id="location"></p>
+            </div>
+            <br />
+            <input type="text" placeholder="Enter a location" id="search-bar">
+            <br />
+            <button id="search-btn">Search</button>
+        </div>
+
+        <script>
+ 
+
+ function getWeatherData(location) {
+  const apiKey = "6eb1180161eccb06843669dbee0f87b3";
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${apiKey}`;
+  return fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      const weatherData = {
+        temperature: data.main.temp,
+        condition: data.weather[0].main,
+        location: data.name,
+      };
+      return weatherData;
+    });
+}
+function updateUI(weatherData) {
+  const temperature = document.querySelector("#temperature");
+  const condition = document.querySelector("#condition");
+  const location = document.querySelector("#location");
+
+  temperature.textContent = `${weatherData.temperature}°C`;
+  condition.textContent = weatherData.condition;
+  location.textContent = weatherData.location;
+}
+
+const searchBtn = document.querySelector("#search-btn");
+const searchBar = document.querySelector("#search-bar");
+
+searchBtn.addEventListener("click", () => {
+  const location = searchBar.value;
+  getWeatherData(location)
+    .then(weatherData => {
+      updateUI(weatherData);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+});
+        </script>
+    </body>
+</html>

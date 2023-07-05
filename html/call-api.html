@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="demo">
+  <p>facts:<span id="fact"></span></p>
+
+  <p>Letter Length:<span id="length"></span></p>
+  
+</div>
+<button type="button" onclick="loadDoc()">Change Content</button>
+</body>
+<script>
+  function loadDoc() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    xhttp
+    let obj = JSON.parse(this.responseText);
+
+    document.getElementById("fact").innerHTML = obj.fact;
+    document.getElementById("length").innerHTML = obj.length;
+
+    }
+  xhttp.open("GET", "https://catfact.ninja/fact", true);
+ 
+  xhttp.send();
+}
+</script>
+</html>
