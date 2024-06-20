@@ -46,6 +46,9 @@
         background-color: tomato;
 
     }
+    #lime{
+        display: inline-block;
+    }
 
 </style>
 <body>
@@ -66,6 +69,14 @@
             <button class="btn" id="stop" onclick="stop()">Stop</button>
             <button class="btn" id="reset" onclick="reset()">Reset</button>
             
+        </div>
+    </div>
+
+
+    <div id="fan">
+        <div id="lime">
+               <input type="text" readonly class="form-control-plaintext" >
+
         </div>
 
     </div>
@@ -105,6 +116,7 @@
             document.getElementById("min").innerHTML="00";
             document.getElementById("sec").innerHTML="00";
             document.getElementById("count").innerHTML="00";
+            
 
 
     
